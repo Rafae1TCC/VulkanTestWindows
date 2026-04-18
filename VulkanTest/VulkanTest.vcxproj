@@ -70,6 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -105,7 +111,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.4.341.1\Include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glfw-3.4.bin.WIN64\include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glm-1.0.3\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.4.341.1\Include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glfw-3.4.bin.WIN64\include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glm-1.0.3\glm;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,7 +129,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.4.341.1\Include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glfw-3.4.bin.WIN64\include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glm-1.0.3\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.4.341.1\Include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glfw-3.4.bin.WIN64\include;C:\Users\rafae\Documents\Visual Studio 18\Libraries\glm-1.0.3\glm;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="first_app.cpp" />
+    <ClCompile Include="lve_device.cpp" />
+    <ClCompile Include="lve_pipeline.cpp" />
+    <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compile.bat" />
+    <None Include="simple_shader.frag" />
+    <None Include="simple_shader.frag.spv" />
+    <None Include="simple_shader.vert" />
+    <None Include="simple_shader.vert.spv" />
+    <None Include="\\wsl.localhost\Ubuntu\home\rafae\Code\Vulkan\VulkanTest\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="first_app.hpp" />
+    <ClInclude Include="lve_device.hpp" />
+    <ClInclude Include="lve_pipeline.hpp" />
+    <ClInclude Include="lve_window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
