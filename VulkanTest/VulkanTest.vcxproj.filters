@@ -33,11 +33,11 @@
     <ClCompile Include="first_app.cpp">
       <Filter>SourceFiles</Filter>
     </ClCompile>
+    <ClCompile Include="lve_swap_chain.cpp">
+      <Filter>SourceFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="\\wsl.localhost\Ubuntu\home\rafae\Code\Vulkan\VulkanTest\Makefile">
-      <Filter>SourceFiles</Filter>
-    </None>
     <None Include="simple_shader.vert">
       <Filter>shaders</Filter>
     </None>
@@ -63,6 +63,9 @@
       <Filter>HeaderFiles</Filter>
     </ClInclude>
     <ClInclude Include="lve_device.hpp">
+      <Filter>HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="lve_swap_chain.hpp">
       <Filter>HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>

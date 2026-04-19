@@ -144,6 +144,7 @@
     <ClCompile Include="lve_pipeline.cpp" />
     <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="lve_swap_chain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="compile.bat" />
@@ -151,13 +152,13 @@
     <None Include="simple_shader.frag.spv" />
     <None Include="simple_shader.vert" />
     <None Include="simple_shader.vert.spv" />
-    <None Include="\\wsl.localhost\Ubuntu\home\rafae\Code\Vulkan\VulkanTest\Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="first_app.hpp" />
     <ClInclude Include="lve_device.hpp" />
     <ClInclude Include="lve_pipeline.hpp" />
     <ClInclude Include="lve_window.hpp" />
+    <ClInclude Include="lve_swap_chain.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
