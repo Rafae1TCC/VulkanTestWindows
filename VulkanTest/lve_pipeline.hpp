@@ -2,6 +2,7 @@
 
 #include "lve_device.hpp"
 
+// std
 #include <string>
 #include <vector>
 
@@ -23,21 +24,24 @@ namespace lve {
 
     class LvePipeline {
     public:
-        LvePipeline(LveDevice& device,
+        LvePipeline(
+            LveDevice& device,
             const std::string& vertFilepath,
             const std::string& fragFilepath,
             const PipelineConfigInfo& configInfo);
         ~LvePipeline();
 
-        LvePipeline(const LvePipeline &) = delete;
-        void operator=(const LvePipeline &) = delete;
+        LvePipeline(const LvePipeline&) = delete;
+        void operator=(const LvePipeline&) = delete;
+
+        void bind(VkCommandBuffer commandBuffer);
 
         static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
 
     private:
         static std::vector<char> readFile(const std::string& filepath);
 
-        void createGraphicsPipeLine(
+        void createGraphicsPipeline(
             const std::string& vertFilepath,
             const std::string& fragFilepath,
             const PipelineConfigInfo& configInfo);
@@ -49,4 +53,4 @@ namespace lve {
         VkShaderModule vertShaderModule;
         VkShaderModule fragShaderModule;
     };
-}
+}  // namespace lve

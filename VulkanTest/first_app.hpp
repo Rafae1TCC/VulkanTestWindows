@@ -5,34 +5,35 @@
 #include "lve_swap_chain.hpp"
 #include "lve_window.hpp"
 
+// std
 #include <memory>
 #include <vector>
 
 namespace lve {
-    class FirstApp {
-    public:
-        static constexpr int WIDTH = 800;
-        static constexpr int HEIGHT = 600;
+class FirstApp {
+ public:
+  static constexpr int WIDTH = 800;
+  static constexpr int HEIGHT = 600;
 
-        FirstApp();
-        ~FirstApp();
+  FirstApp();
+  ~FirstApp();
 
-        FirstApp(const FirstApp &) = delete;
-        FirstApp &operator=(const FirstApp &) = delete;
+  FirstApp(const FirstApp &) = delete;
+  FirstApp &operator=(const FirstApp &) = delete;
 
-        void run();
+  void run();
 
-    private:
-        void createPipelineLayout();
-        void createPipeline();
-        void createCommandBuffers();
-        void drawFrame();
+ private:
+  void createPipelineLayout();
+  void createPipeline();
+  void createCommandBuffers();
+  void drawFrame();
 
-        LveWindow lveWindow{ WIDTH, HEIGHT, "Hello World!" };
-        LveDevice lveDevice{ lveWindow };
-        LveSwapChain lveSwapChain{ lveDevice, lveWindow.getExtent() };
-        std::unique_ptr<LvePipeline> lvePipeline;
-        VkPipelineLayout pipeLineLayout;
-        std::vector<VkCommandBuffer> commandBuffers;
-    };
-}
+  LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
+  LveDevice lveDevice{lveWindow};
+  LveSwapChain lveSwapChain{lveDevice, lveWindow.getExtent()};
+  std::unique_ptr<LvePipeline> lvePipeline;
+  VkPipelineLayout pipelineLayout;
+  std::vector<VkCommandBuffer> commandBuffers;
+};
+}  // namespace lve
