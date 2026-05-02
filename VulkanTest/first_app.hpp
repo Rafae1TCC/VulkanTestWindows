@@ -4,6 +4,7 @@
 #include "lve_pipeline.hpp"
 #include "lve_swap_chain.hpp"
 #include "lve_window.hpp"
+#include "lve_model.hpp"
 
 // std
 #include <memory>
@@ -24,10 +25,17 @@ class FirstApp {
   void run();
 
  private:
-  void createPipelineLayout();
-  void createPipeline();
-  void createCommandBuffers();
-  void drawFrame();
+	 void loadModels();
+	 void createPipelineLayout();
+	 void createPipeline();
+	 void createCommandBuffers();
+	 void drawFrame();
+	 void sierpinski(
+		 std::vector<LveModel::Vertex>& vertices,
+		 int depth,
+		 glm::vec2 left,
+		 glm::vec2 right,
+		 glm::vec2 top);
 
   LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
   LveDevice lveDevice{lveWindow};
@@ -35,5 +43,6 @@ class FirstApp {
   std::unique_ptr<LvePipeline> lvePipeline;
   VkPipelineLayout pipelineLayout;
   std::vector<VkCommandBuffer> commandBuffers;
+  std::unique_ptr<LveModel> lveModel;
 };
 }  // namespace lve

@@ -36,6 +36,9 @@
     <ClCompile Include="lve_swap_chain.cpp">
       <Filter>SourceFiles</Filter>
     </ClCompile>
+    <ClCompile Include="lve_model.cpp">
+      <Filter>SourceFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="simple_shader.vert">
@@ -66,6 +69,9 @@
       <Filter>HeaderFiles</Filter>
     </ClInclude>
     <ClInclude Include="lve_swap_chain.hpp">
+      <Filter>HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="lve_model.hpp">
       <Filter>HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>
