@@ -6,6 +6,7 @@
 #include <vulkan/vulkan.h>
 
 // std lib headers
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -13,9 +14,12 @@ namespace lve {
 
     class LveSwapChain {
     public:
-        // Remove MAX_FRAMES_IN_FLIGHT constant since we'll use image count
+        static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
         LveSwapChain(LveDevice& deviceRef, VkExtent2D windowExtent);
+        LveSwapChain(
+            LveDevice& deviceRef, VkExtent2D windowExtent, std::shared_ptr<LveSwapChain> previous);
+
         ~LveSwapChain();
 
         LveSwapChain(const LveSwapChain&) = delete;
@@ -39,6 +43,7 @@ namespace lve {
         VkResult submitCommandBuffers(const VkCommandBuffer* buffers, uint32_t* imageIndex);
 
     private:
+        void init();
         void createSwapChain();
         void createImageViews();
         void createDepthResources();
@@ -69,15 +74,13 @@ namespace lve {
         VkExtent2D windowExtent;
 
         VkSwapchainKHR swapChain;
+        std::shared_ptr<LveSwapChain> oldSwapChain;
 
-        // Use vectors sized to image count
         std::vector<VkSemaphore> imageAvailableSemaphores;
         std::vector<VkSemaphore> renderFinishedSemaphores;
         std::vector<VkFence> inFlightFences;
         std::vector<VkFence> imagesInFlight;
-
-        // Track current frame index (0 to imageCount-1)
-        uint32_t currentFrame = 0;
+        size_t currentFrame = 0;
     };
 
 }  // namespace lve
