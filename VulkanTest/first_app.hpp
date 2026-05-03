@@ -33,9 +33,9 @@ class FirstApp {
 	 void sierpinski(
 		 std::vector<LveModel::Vertex>& vertices,
 		 int depth,
-		 glm::vec2 left,
-		 glm::vec2 right,
-		 glm::vec2 top);
+		 glm::vec2 left, glm::vec3 leftColor,
+		 glm::vec2 right, glm::vec3 rightColor,
+		 glm::vec2 top, glm::vec3 topColor);
 
   LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
   LveDevice lveDevice{lveWindow};

@@ -27,27 +27,54 @@ namespace lve {
     void FirstApp::sierpinski(
         std::vector<LveModel::Vertex>& vertices,
         int depth,
-        glm::vec2 left,
-        glm::vec2 right,
-        glm::vec2 top) {
+        glm::vec2 left, glm::vec3 leftColor,
+        glm::vec2 right, glm::vec3 rightColor,
+        glm::vec2 top, glm::vec3 topColor) {
+
         if (depth <= 0) {
-            vertices.push_back({ top });
-            vertices.push_back({ right });
-            vertices.push_back({ left });
+            vertices.push_back({ top,   topColor });
+            vertices.push_back({ right, rightColor });
+            vertices.push_back({ left,  leftColor });
         }
         else {
             auto leftTop = 0.5f * (left + top);
             auto rightTop = 0.5f * (right + top);
             auto leftRight = 0.5f * (left + right);
-            sierpinski(vertices, depth - 1, left, leftRight, leftTop);
-            sierpinski(vertices, depth - 1, leftRight, right, rightTop);
-            sierpinski(vertices, depth - 1, leftTop, rightTop, top);
+
+            // Interpolate colors at midpoints
+            auto leftTopColor = 0.5f * (leftColor + topColor);
+            auto rightTopColor = 0.5f * (rightColor + topColor);
+            auto leftRightColor = 0.5f * (leftColor + rightColor);
+
+            sierpinski(vertices, depth - 1,
+                left, leftColor,
+                leftRight, leftRightColor,
+                leftTop, leftTopColor);
+
+            sierpinski(vertices, depth - 1,
+                leftRight, leftRightColor,
+                right, rightColor,
+                rightTop, rightTopColor);
+
+            sierpinski(vertices, depth - 1,
+                leftTop, leftTopColor,
+                rightTop, rightTopColor,
+                top, topColor);
         }
     }
 
     void FirstApp::loadModels() {
+        //std::vector<LveModel::Vertex> vertices{
+        //    {{0.0f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+        //    {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+        //    {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}
+        //};
         std::vector<LveModel::Vertex> vertices{};
-        sierpinski(vertices, 8, { -0.5f, 0.5f }, { 0.5f, 0.5f }, { 0.0f, -0.5f });
+        sierpinski(vertices, 5,
+            { -0.5f,  0.5f }, { 1.0f, 0.3f, 0.2f },  // left  → red
+            { 0.5f,  0.5f }, { 1.0f, 1.0f, 0.7f },  // right → green
+            { 0.0f, -0.5f }, { 1.0f, 1.0f, 1.0f }   // top   → blue
+        );
         lveModel = std::make_unique<LveModel>(lveDevice, vertices);
     }
 
